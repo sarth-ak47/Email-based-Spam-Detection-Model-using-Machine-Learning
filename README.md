@@ -17,6 +17,7 @@ This project is focused on building a machine learning model that classifies ema
 📈 Visualized top keywords in spam/ham messages using bar charts
 
 
+
 🧪 Tech Stack
 
 Python 3.x
@@ -30,3 +31,35 @@ Pandas
 NumPy
 
 Matplotlib & Seaborn
+
+
+
+📌 How it Works
+
+
+Load and clean the dataset
+
+Preprocess text using NLTK
+
+Transform text into TF-IDF features
+
+Train a logistic regression model
+
+Evaluate performance
+
+Visualize results
+
+
+🚀 Future Improvements
+
+Deep learning (LSTM, BERT)
+
+Multilingual detection
+
+Real-time filtering system
+
+Feedback-based learning
+
+IP-based spam flagging
+
+

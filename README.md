@@ -3,6 +3,7 @@ This project is focused on building a machine learning model that classifies ema
 
 
 🔍 Project Highlights
+
 ✅ Built using Python, scikit-learn, NLTK, Matplotlib, Seaborn
 
 📁 Trained on a labeled dataset from Kaggle

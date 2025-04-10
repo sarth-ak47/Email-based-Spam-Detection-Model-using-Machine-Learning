@@ -1,0 +1,116 @@
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, confusion_matrix, roc_curve, roc_auc_score
+import nltk
+from nltk.corpus import stopwords
+from collections import Counter
+import matplotlib.pyplot as plt
+import seaborn as sns
+%matplotlib inline
+df= pd.read_csv("/content/spam.csv",encoding='ISO-8859-1')
+df
+df.info()
+import nltk
+nltk.download("stopwords")
+
+new_column_names = {"v1":"Category","v2":"Message"}
+df.rename(columns = new_column_names,inplace = True)
+df[df.duplicated()]
+df=df.drop_duplicates()
+df
+df.describe()
+df['Category'].value_counts()
+sns.countplot(data=df, x='Category')
+plt.xlabel('Category')
+plt.ylabel('count')
+plt.title('Distribution of mails')
+plt.show()
+df.loc[df["Category"] == "spam", "Category"] = 0
+df.loc[df["Category"] == "ham", "Category"] = 1
+df.head()
+X = df["Message"]
+Y = df["Category"]
+X
+Y   
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.2, random_state = 42)
+
+rint(X.shape)
+print(X_train.shape)
+print(X_test.shape)
+
+feature_extraction = TfidfVectorizer(min_df=1, stop_words="english", lowercase=True)
+
+X_train_features = feature_extraction.fit_transform(X_train)
+X_test_features = feature_extraction.transform(X_test)
+
+Y_train = Y_train.astype(int)
+Y_test = Y_test.astype(int)
+print(X_train)
+
+print(X_train_features)
+
+model = LogisticRegression()
+model.fit(X_train_features, Y_train)
+
+prediction_on_training_data = model.predict(X_train_features)
+accuracy_on_training_data=accuracy_score(Y_train,prediction_on_training_  data)
+
+print("Accuracy on training data:",accuracy_on_training_data)
+
+prediction_on_test_data = model.predict(X_test_features)
+accuracy_on_test_data = accuracy_score(Y_test,prediction_on_test_data)
+print("Accuracy on test data:",accuracy_on_test_data)
+
+input_mail = ["Congratulations! 🎉 You've been selected to receive a FREE iPhone 15 Pro! Click the link below and claim your prize NOW before it expires!"]
+input_data_features = feature_extraction.transform(input_mail)
+prediction = model.predict(input_data_features)
+
+if (prediction)[0] == 1:
+    print("Ham Mail")
+else:
+    print("Spam Mail")
+
+input_mail = ["Your admit card Available Download it now "]
+input_data_features = feature_extraction.transform(input_mail)
+prediction = model.predict(input_data_features)
+
+if (prediction)[0] == 1:
+    print("Ham Mail")
+else:
+    print("Spam Mail")
+
+cm = confusion_matrix(Y_test, prediction_on_test_data)
+
+plt.figure(figsize=(6, 4))
+sns.heatmap(cm, annot=True, fmt="d", cmap='Blues', cbar=False)
+plt.xlabel('Predicted')
+plt.ylabel('True')
+plt.title('Confusion Matrix')
+plt.show()
+
+stop_words = set(stopwords.words('english'))
+spam_words = " ".join(df[df['Category'] == 0]['Message']).split()
+ham_words = " ".join(df[df['Category'] == 1]['Message']).split()
+
+spam_word_freq = Counter([word.lower() for word in spam_words if word.lower() not in stop_words and word.isalpha()])
+
+plt.figure(figsize=(10, 6))
+plt.bar(*zip(*spam_word_freq.most_common(10)), color='g')
+plt.xlabel('Words')
+plt.ylabel('Frequency')
+plt.title('Top 10 Most Common Words in Spam Emails')
+plt.xticks(rotation=45)
+plt.show()
+
+ham_word_freq = Counter([word.lower() for word in ham_words if word.lower() not in stop_words and word.isalpha()])
+
+plt.figure(figsize=(10, 6))
+plt.bar(*zip(*ham_word_freq.most_common(10)), color='maroon')
+plt.xlabel('Words')
+plt.ylabel('Frequency')
+plt.title('Top 10 Most Common Words in Ham Emails')
+plt.xticks(rotation=45)
+plt.show()

@@ -16,7 +16,7 @@ This project is focused on building a machine learning model that classifies ema
 
 📈 Visualized top keywords in spam/ham messages using bar charts
 
-
+_____________________________________________________________________
 
 🧪 Tech Stack
 
@@ -32,7 +32,7 @@ NumPy
 
 Matplotlib & Seaborn
 
-
+___________________________________________________________________
 
 📌 How it Works
 
@@ -49,6 +49,7 @@ Evaluate performance
 
 Visualize results
 
+_______________________________________________________________
 
 🚀 Future Improvements
 

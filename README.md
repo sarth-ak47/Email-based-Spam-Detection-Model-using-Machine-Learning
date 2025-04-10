@@ -15,3 +15,18 @@ This project is focused on building a machine learning model that classifies ema
 🧠 Evaluated model using accuracy score and confusion matrix
 
 📈 Visualized top keywords in spam/ham messages using bar charts
+
+
+🧪 Tech Stack
+
+Python 3.x
+
+scikit-learn
+
+NLTK
+
+Pandas
+
+NumPy
+
+Matplotlib & Seaborn

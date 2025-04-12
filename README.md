@@ -64,3 +64,11 @@ Feedback-based learning
 IP-based spam flagging
 
 
+________________________________________________________________
+
+![Screenshot 2025-04-12 115125](https://github.com/user-attachments/assets/9358cdd1-1369-4715-8edb-99014808dc5c)
+![Screenshot 2025-04-12 115137](https://github.com/user-attachments/assets/a6982b22-082d-4557-ac65-e01349d91950)
+![Screenshot 2025-04-12 115153](https://github.com/user-attachments/assets/3b9771bd-63fc-44b2-a969-4ff415d875d0)
+
+
+
